@@ -19,8 +19,8 @@ import java.util.List;
 
 public class Main {
 
-    protected static String filePath = "/Users/xinliu/Downloads/test200/test200-train/train.test200.cbor.paragraphs";
-    protected static String indexPath = "/Users/xinliu/Documents/UNH/18Fall/cs853/index";
+    protected static String filePath = "/Users/xinliu/Documents/UNH/18Fall/cs853/test200/test200-train/train.pages.cbor-paragraphs.cbor";
+
     public static void main(String[] args) {
         System.setProperty("file.encoding", "UTF-8");
         String query1 = "power nap benefits";
