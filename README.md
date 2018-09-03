@@ -51,6 +51,7 @@ Add trec car tool to the project:
 1. Clone the programming assignment by https://github.com/XinLiu92/cs853programmingAssignment1Group7.git to your local. 
 2. Open the cloned repository in Intellij, and reimport maven dependencies.
    Windows type in ctrl+shift+a to find action, type in "reimport", you will find "reimport all maven projects", then select it and press enter. Mac will type in cmd+shift +a instead. 
+   All of the necessary dependencies are included in pom.xml
 3. Change the index directory under Indexer.java and searchEngine.java and data file directory under Main.java
 4. Rebuild the project and run Main.java
 5. By changing the boolean variable defualtScore under Main.java to false, you can swich the score function to the one we need to change in assignment spec.
