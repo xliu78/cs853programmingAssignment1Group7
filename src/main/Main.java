@@ -1,8 +1,8 @@
 package main;
 
 import co.nstant.in.cbor.CborException;
-import edu.unh.cs.treccar.Data;
-import edu.unh.cs.treccar.read_data.DeserializeData;
+import edu.unh.cs.treccar_v2.Data;
+import edu.unh.cs.treccar_v2.read_data.DeserializeData;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.ScoreDoc;
@@ -39,23 +39,19 @@ public class Main {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (CborException e) {
-            e.printStackTrace();
         }
 
-
+        System.out.println("==================Search with default score function=======================");
         System.out.println("");
         search(query1,10,list,defualtScore);
         search(query2,10,list,defualtScore);
         search(query3,10,list,defualtScore);
 
-
+        System.out.println("===================search with custom score function========================");
         search(query1,10,list,false);
         search(query2,10,list,false);
         search(query3,10,list,false);
-        //search(query1,10,list);
-//        search(query2,10,list);
-//        search(query3,10,list);
+
     }
 
 
