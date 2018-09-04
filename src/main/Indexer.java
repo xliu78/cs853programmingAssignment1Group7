@@ -21,20 +21,20 @@ import java.util.List;
 
 
 public class Indexer {
-    private boolean defualtEngine = true;
+    private boolean defaultEngine = true;
 
     public Indexer(){
 
     }
 
-    public Indexer(boolean defualtEngine){
-        this.defualtEngine = defualtEngine;
+    public Indexer(boolean defaultEngine){
+        this.defaultEngine = defaultEngine;
     }
 
 
     private IndexWriter indexWriter = null;
     //    static final String INDEX_DIRECTORY = "Users/xinliu/Documents/UNH/18Fall/cs853/index";
-    public IndexWriter getIndexWriter(boolean create,boolean defualtEngine) throws IOException {
+    public IndexWriter getIndexWriter(boolean create,boolean defaultEngine) throws IOException {
         if (indexWriter == null){
             Directory indexDir = FSDirectory.open(Paths.get("/Users/xinliu/Documents/UNH/18Fall/cs853/index"));
             IndexWriterConfig config = new IndexWriterConfig(new StandardAnalyzer());
@@ -45,8 +45,8 @@ public class Indexer {
                 config.setOpenMode(OpenMode.CREATE_OR_APPEND);
             }
 
-            if (!defualtEngine){
-                config.setSimilarity(createCustomeSimiliarity());
+            if (!defaultEngine){
+                config.setSimilarity(createCustomSimilarity());
             }
 
 
@@ -54,7 +54,7 @@ public class Indexer {
         }
         return indexWriter;
     }
-    private Similarity createCustomeSimiliarity() {
+    private Similarity createCustomSimilarity() {
 
         Similarity sim = new SimilarityBase() {
 
@@ -82,7 +82,7 @@ public class Indexer {
 
     public void indexFile(Paragraph p) throws IOException {
         if(p != null){
-            IndexWriter writer = getIndexWriter(false,defualtEngine);
+            IndexWriter writer = getIndexWriter(false,defaultEngine);
             Document d = new Document();
             d.add(new StringField("id",p.getParaID(), Field.Store.YES));
             d.add(new TextField("text",p.getParaText(),Field.Store.YES));
@@ -93,7 +93,7 @@ public class Indexer {
     }
 
     public void rebuildIndexes(List<Paragraph> list) throws IOException, CborException {
-        getIndexWriter(true,defualtEngine);
+        getIndexWriter(true,defaultEngine);
         if (!list.isEmpty()){
             for (Paragraph p : list){
                 indexFile(p);
@@ -103,3 +103,4 @@ public class Indexer {
     }
 
 }
+

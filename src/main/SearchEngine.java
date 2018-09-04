@@ -25,7 +25,7 @@ public class SearchEngine {
         searcher = new IndexSearcher(DirectoryReader.open(FSDirectory.open(Paths.get("/Users/xinliu/Documents/UNH/18Fall/cs853/index"))));
 
         if (!default_engine) {
-            searcher.setSimilarity(createCustomeSimiliarity());
+            searcher.setSimilarity(createCustomSimilarity());
         }
 
         parser = new QueryParser("content", new StandardAnalyzer());
@@ -49,7 +49,7 @@ public class SearchEngine {
     }
 
     //add custom score similarity
-    private Similarity createCustomeSimiliarity() {
+    private Similarity createCustomSimilarity() {
 
         Similarity sim = new SimilarityBase() {
 
