@@ -19,8 +19,8 @@ import java.util.List;
 
 public class Main {
 
-    protected static String filePath = "/Users/xinliu/Downloads/test200/test200-train/train.test200.cbor.paragraphs";
-    protected static String indexPath = "/Users/xinliu/Documents/UNH/18Fall/cs853/index";
+    protected static String filePath = "/Users/xinliu/Documents/UNH/18Fall/cs853/test200/test200-train/train.pages.cbor-paragraphs.cbor";
+
     public static void main(String[] args) {
         System.setProperty("file.encoding", "UTF-8");
         String query1 = "power nap benefits";
@@ -42,43 +42,22 @@ public class Main {
         } catch (CborException e) {
             e.printStackTrace();
         }
+
+
+        System.out.println("");
         search(query1,10,list,defualtScore);
+        search(query2,10,list,defualtScore);
+        search(query3,10,list,defualtScore);
+
+
+        search(query1,10,list,false);
+        search(query2,10,list,false);
+        search(query3,10,list,false);
         //search(query1,10,list);
 //        search(query2,10,list);
 //        search(query3,10,list);
     }
-//    public static void search(String queryStr, int size, boolean default_engine) {
-//        try {
-//            ArrayList<Paragraph> dataList = ReadData.getAllParagraphFromDataSet();
-//            Indexer indexer = new Indexer();
-//            indexer.rebuildIndexes(dataList);
-//
-//            System.out.println("Search with search query ===> " + queryStr);
-//            System.out.println("Default scoring function: " + default_engine);
-//
-//            /*
-//             * SearchEngine(boolean default_engine), while true using default
-//             * Lucene scoring function.
-//             */
-//            SearchEngine se = new SearchEngine(default_engine);
-//            TopDocs topDocs = se.performSearch(queryStr, size);
-//
-//            System.out.println("Result found: " + topDocs.totalHits);
-//
-//            System.out.println("Rank ----- Paragraph ID -------------------- Score ------------- Text ---------  ");
-//            ScoreDoc[] hits = topDocs.scoreDocs;
-//
-//            for (int i = 0; i < hits.length; i++) {
-//                Document doc = se.getDocument(hits[i].doc);
-//                System.out.println((i + 1) + ". " + doc.get("id") + " (" + hits[i].score + ") " + doc.get("text"));
-//
-//            }
-//            System.out.println("Search done");
-//
-//        } catch (Throwable e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 
     public static void search(String query,int size,List<Paragraph> list,boolean defualtScore){
 
@@ -89,6 +68,8 @@ public class Main {
 
             SearchEngine se = new SearchEngine(defualtScore);
             TopDocs topDocs = se.performSearch(query, size);
+            System.out.println("Search with search query ===> " + query);
+            System.out.println("Search with defaut engine ===> " + defualtScore);
             System.out.println("Results found: " + topDocs.totalHits);
             ScoreDoc[] hits = topDocs.scoreDocs;
             System.out.println("hits lengtyh "+ hits.length);
