@@ -41,13 +41,13 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println("Search with default score function");
+        System.out.println("==================Search with default score function=======================");
         System.out.println("");
         search(query1,10,list,defualtScore);
         search(query2,10,list,defualtScore);
         search(query3,10,list,defualtScore);
 
-        System.out.println("search with custom score function");
+        System.out.println("===================search with custom score function========================");
         search(query1,10,list,false);
         search(query2,10,list,false);
         search(query3,10,list,false);
