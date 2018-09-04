@@ -41,13 +41,14 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println("==================Search with default score function=======================");
+        System.out.println("================== Search with default score function =======================");
         System.out.println("");
         search(query1,10,list,true);
         search(query2,10,list,true);
         search(query3,10,list,true);
 
-        System.out.println("===================search with custom score function========================");
+        System.out.println("=================== Search with custom score function ========================");
+        System.out.println("");
         search(query1,10,list,false);
         search(query2,10,list,false);
         search(query3,10,list,false);
@@ -68,13 +69,13 @@ public class Main {
             System.out.println("Search with default engine ===> " + defaultScore);
             System.out.println("Results found: " + topDocs.totalHits);
             ScoreDoc[] hits = topDocs.scoreDocs;
-            System.out.println("Rank -------------ID -------------------------Score ------------- Text ---------  ");
             System.out.println("hits length "+ hits.length);
+            System.out.println("Rank ------------- ID ------------------------- Score ------------- Text ---------  ");
             for (int i = 0; i < hits.length;i++){
                 Document doc = se.getDocument(hits[i].doc);
                 System.out.println((i+1)+".   "+doc.get("id")+"   Score: "+hits[i].score+"  "+doc.get("text"));
             }
-            System.out.println("search finished");
+            System.out.println("Search finished\n");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CborException e) {
