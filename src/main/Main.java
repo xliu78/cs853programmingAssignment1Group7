@@ -30,7 +30,7 @@ public class Main {
 
 
         List<Paragraph> list = new ArrayList<>();
-        boolean defualtScore = false;
+        boolean defaultScore = false;
         try {
             FileInputStream stream = new FileInputStream(new File(filePath));
             for (Data.Paragraph data: DeserializeData.iterableParagraphs(stream)){
@@ -41,13 +41,14 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println("==================Search with default score function=======================");
+        System.out.println("================== Search with default score function =======================");
         System.out.println("");
-        search(query1,10,list,defualtScore);
-        search(query2,10,list,defualtScore);
-        search(query3,10,list,defualtScore);
+        search(query1,10,list,true);
+        search(query2,10,list,true);
+        search(query3,10,list,true);
 
-        System.out.println("===================search with custom score function========================");
+        System.out.println("=================== Search with custom score function ========================");
+        System.out.println("");
         search(query1,10,list,false);
         search(query2,10,list,false);
         search(query3,10,list,false);
@@ -55,26 +56,26 @@ public class Main {
     }
 
 
-    public static void search(String query,int size,List<Paragraph> list,boolean defualtScore){
+    public static void search(String query,int size,List<Paragraph> list,boolean defaultScore){
 
 
         try {
-            Indexer indexer = new Indexer(defualtScore);
+            Indexer indexer = new Indexer(defaultScore);
             indexer.rebuildIndexes(list);
 
-            SearchEngine se = new SearchEngine(defualtScore);
+            SearchEngine se = new SearchEngine(defaultScore);
             TopDocs topDocs = se.performSearch(query, size);
             System.out.println("Search with search query ===> " + query);
-            System.out.println("Search with defaut engine ===> " + defualtScore);
+            System.out.println("Search with default engine ===> " + defaultScore);
             System.out.println("Results found: " + topDocs.totalHits);
             ScoreDoc[] hits = topDocs.scoreDocs;
-            System.out.println("hits lengtyh "+ hits.length);
-            System.out.println("Rank -------------ID -------------------------Score ------------- Text ---------  ");
+            System.out.println("hits length "+ hits.length);
+            System.out.println("Rank ------------- ID ------------------------- Score ------------- Text ---------  ");
             for (int i = 0; i < hits.length;i++){
                 Document doc = se.getDocument(hits[i].doc);
                 System.out.println((i+1)+".   "+doc.get("id")+"   Score: "+hits[i].score+"  "+doc.get("text"));
             }
-            System.out.println("search finished");
+            System.out.println("Search finished\n");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CborException e) {
