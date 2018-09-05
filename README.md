@@ -32,7 +32,6 @@ Add trec car tool to the project:
 2. Use maven command to package the trec car tool to jar file and maven will put it in maven local repository
        mvn clean install
    *If you got a message like mvn: command not found. Under Linux, you need to set JAVA_HOME and M2_HOME directory in .bash_profile, if there is no such file, just create one. run the following command 
-   
        sudo vi ~/.bash_profile
    Add the following to the file:
        //replace the JAVA_HOME and M2_HOME based on your own
