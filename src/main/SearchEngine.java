@@ -19,10 +19,11 @@ import java.nio.file.Paths;
 public class SearchEngine {
     private IndexSearcher searcher = null;
     private QueryParser parser = null;
+    private String indexPath = "";
 
-
-    public SearchEngine(boolean default_engine) throws IOException {
-        searcher = new IndexSearcher(DirectoryReader.open(FSDirectory.open(Paths.get("/Users/xinliu/Documents/UNH/18Fall/cs853/index"))));
+    public SearchEngine(boolean default_engine,String indexPath) throws IOException {
+        this.indexPath = indexPath;
+        searcher = new IndexSearcher(DirectoryReader.open(FSDirectory.open(Paths.get(indexPath))));
 
         if (!default_engine) {
             searcher.setSimilarity(createCustomeSimiliarity());
@@ -55,12 +56,14 @@ public class SearchEngine {
 
             @Override
             protected float score(BasicStats stats, float freq, float docLen) {
-
+                // TODO Auto-generated method stub
                 return freq;
             }
 
             @Override
             public String toString() {
+
+                // TODO Auto-generated method stub
                 return null;
             }
 

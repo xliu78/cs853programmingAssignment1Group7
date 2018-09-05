@@ -22,21 +22,22 @@ import java.util.List;
 
 public class Indexer {
     private boolean defualtEngine = true;
-
+    private String indexPath = "";
     public Indexer(){
 
     }
 
-    public Indexer(boolean defualtEngine){
+    public Indexer(boolean defualtEngine,String indexPath){
         this.defualtEngine = defualtEngine;
+        this.indexPath = indexPath;
     }
 
 
     private IndexWriter indexWriter = null;
-    //    static final String INDEX_DIRECTORY = "Users/xinliu/Documents/UNH/18Fall/cs853/index";
+
     public IndexWriter getIndexWriter(boolean create,boolean defualtEngine) throws IOException {
         if (indexWriter == null){
-            Directory indexDir = FSDirectory.open(Paths.get("/Users/xinliu/Documents/UNH/18Fall/cs853/index"));
+            Directory indexDir = FSDirectory.open(Paths.get(indexPath));
             IndexWriterConfig config = new IndexWriterConfig(new StandardAnalyzer());
 
             if (create) {
@@ -66,6 +67,7 @@ public class Indexer {
 
             @Override
             public String toString() {
+
                 return null;
             }
 

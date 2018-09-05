@@ -19,7 +19,7 @@ import java.util.List;
 
 public class Main {
 
-    protected static String filePath = "/Users/xinliu/Documents/UNH/18Fall/cs853/test200/test200-train/train.pages.cbor-paragraphs.cbor";
+
 
     public static void main(String[] args) {
         System.setProperty("file.encoding", "UTF-8");
@@ -28,9 +28,16 @@ public class Main {
         String query3 = "pokemon puzzle league";
         //read data
 
+        if (args.length < 2){
+            System.out.println("command line argument : indexDirectory FileDirectory");
+        }
+        //
+        ///Users/xinliu/Documents/UNH/18Fall/cs853/index /Users/xinliu/Documents/UNH/18Fall/cs853/test200/test200-train/train.pages.cbor-paragraphs.cbor
+        String indexPath = args[0];
 
+        String filePath = args[1];
         List<Paragraph> list = new ArrayList<>();
-        boolean defualtScore = false;
+        boolean defualtScore = true;
         try {
             FileInputStream stream = new FileInputStream(new File(filePath));
             for (Data.Paragraph data: DeserializeData.iterableParagraphs(stream)){
@@ -43,26 +50,28 @@ public class Main {
 
         System.out.println("==================Search with default score function=======================");
         System.out.println("");
-        search(query1,10,list,defualtScore);
-        search(query2,10,list,defualtScore);
-        search(query3,10,list,defualtScore);
+        search(query1,10,list,defualtScore,indexPath);
+        search(query2,10,list,defualtScore,indexPath);
+        search(query3,10,list,defualtScore,indexPath);
 
         System.out.println("===================search with custom score function========================");
-        search(query1,10,list,false);
-        search(query2,10,list,false);
-        search(query3,10,list,false);
+        search(query1,10,list,!defualtScore,indexPath);
+
+        search(query2,10,list,!defualtScore,indexPath);
+        search(query3,10,list,!defualtScore,indexPath);
+
 
     }
 
 
-    public static void search(String query,int size,List<Paragraph> list,boolean defualtScore){
+    public static void search(String query,int size,List<Paragraph> list,boolean defualtScore,String indexPath){
 
 
         try {
-            Indexer indexer = new Indexer(defualtScore);
+            Indexer indexer = new Indexer(defualtScore,indexPath);
             indexer.rebuildIndexes(list);
 
-            SearchEngine se = new SearchEngine(defualtScore);
+            SearchEngine se = new SearchEngine(defualtScore,indexPath);
             TopDocs topDocs = se.performSearch(query, size);
             System.out.println("Search with search query ===> " + query);
             System.out.println("Search with defaut engine ===> " + defualtScore);
