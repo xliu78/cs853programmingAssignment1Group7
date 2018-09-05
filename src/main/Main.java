@@ -77,8 +77,8 @@ public class Main {
             System.out.println("Search with defaut engine ===> " + defualtScore);
             System.out.println("Results found: " + topDocs.totalHits);
             ScoreDoc[] hits = topDocs.scoreDocs;
-            System.out.println("hits lengtyh "+ hits.length);
-            System.out.println("Rank -------------ID -------------------------Score ------------- Text ---------  ");
+            System.out.println("hits length "+ hits.length);
+            System.out.println("Rank -------------ID --------------------------------------------------Score ------------- Text ---------  ");
             for (int i = 0; i < hits.length;i++){
                 Document doc = se.getDocument(hits[i].doc);
                 System.out.println((i+1)+".   "+doc.get("id")+"   Score: "+hits[i].score+"  "+doc.get("text"));
