@@ -63,7 +63,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>main.InitSearch</mainClass>
+                    <mainClass>main.Main</mainClass>
                     <arguments>
                         <argument>run</argument>
                     </arguments>
