@@ -85,3 +85,7 @@ Run in command line:
    in this command, pass **index directory** and **.cbor file directory** to -Dexec.args=""
 
 5. The query output will be print out to the console.
+
+
+
+maven exe refer:https://www.cnblogs.com/EasonJim/p/6830104.html
