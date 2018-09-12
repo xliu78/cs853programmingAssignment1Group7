@@ -29,6 +29,7 @@ Installation:
 Add trec car tool to the project:
 
 1. Navigate to the directory of trec car tool java version which is ~/trec-car-tools-java-master
+
 2. Use maven command to package the trec car tool to jar file and maven will put it in maven local repository
        mvn clean install
    *If you got a message like mvn: command not found. Under Linux, you need to set JAVA_HOME and M2_HOME directory in .bash_profile, if there is no such file, just create one. run the following command 
@@ -47,11 +48,40 @@ Add trec car tool to the project:
        source ~/.bash_profile
    Now you can go the ~/trec-car-tools-java-master to run the command.
 
-1. Clone the programming assignment by https://github.com/XinLiu92/cs853programmingAssignment1Group7.git to your local. 
-2. Open the cloned repository in Intellij, and reimport maven dependencies.
+3. Clone the programming assignment by https://github.com/XinLiu92/cs853programmingAssignment1Group7.git to your local. 
+
+4. Open the cloned repository in Intellij, and reimport maven dependencies.
    Windows type in ctrl+shift+a to find action, type in "reimport", you will find "reimport all maven projects", then select it and press enter. Mac will type in cmd+shift +a instead. 
    All of the necessary dependencies are included in pom.xml
-3. Make sure you pass two arguments to the program, the first one is index directory, second one is the data file directory
-4. Rebuild the project and run Main.java
-5. By changing the boolean variable defualtScore under Main.java to false, you can swich the score function to the one we need to change in assignment spec.
-6. Then run the program to get the result.
+
+5. Make sure you pass two arguments to the program, the first one is index directory, second one is the data file directory
+
+6. Rebuild the project and run Main.java
+
+7. By changing the boolean variable defualtScore under Main.java to false, you can swich the score function to the one we need to change in assignment spec.
+
+8. Then run the program to get the result.
+
+
+
+Run in command line:
+
+1. make sure the trec car tool jar file is in  .m2 file which is for maven local repository
+
+2. clone **cs853programmingAssignment1Group7** from github and cd in to the directory which contains pom.xml and src folder.
+
+3. run 
+
+   ```
+   mvn compile 
+   ```
+
+4. rum 
+
+   ```
+   mvn exec:java -Dexec.mainClass="main.Main" -Dexec.args="arg0 arg1"
+   ```
+
+   in this command, pass **index directory** and **.cbor file directory** to -Dexec.args=""
+
+5. The query output will be print out to the console.
